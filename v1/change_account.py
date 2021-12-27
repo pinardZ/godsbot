@@ -1,6 +1,6 @@
 import os
 import shutil
-from logger import BFLog
+from v1.logger import BFLog
 
 login_files_path = ".\\login_files"
 index_path = ".\\current_index.py"
