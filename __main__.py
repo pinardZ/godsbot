@@ -12,12 +12,12 @@ def main():
     logging.info('Program Started. Press Ctrl-C to abort at any time.')
     ctx = runtime.Context(1)
     while True:
-        replace_account(ctx)
+        # replace_account(ctx)
         login_vpn(ctx)
-        open_game(ctx)
-        play_game(ctx)
-        close_game(ctx)
-        logout_vpn(ctx)
+        # open_game(ctx)
+        # play_game(ctx)
+        # close_game(ctx)
+        # logout_vpn(ctx)
 
 
 def replace_account(ctx: runtime.Context):
@@ -31,7 +31,7 @@ def replace_account(ctx: runtime.Context):
 
 def login_vpn(ctx: runtime.Context):
     """Login vpn program.Args account to acquire same ip if program support."""
-
+    ret = shell.run_cmd("python3 -m change_ip %d" % ctx.index)
     pass
 
 

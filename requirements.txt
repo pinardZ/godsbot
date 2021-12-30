@@ -1,1 +1,4 @@
 PyAutoGUI==0.9.53
+google-cloud-storage
+google-cloud-vpc-access
+google-cloud-compute
