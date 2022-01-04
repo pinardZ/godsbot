@@ -1,10 +1,10 @@
 import logging
-import runtime
+from main import runtime
 import sys
 import time
 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
+logging.basicConfig(level=logging.INFO, format='replace_account %(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
 
 
 def main():

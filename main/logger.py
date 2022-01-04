@@ -1,6 +1,7 @@
 import logging
 import time
- 
+
+
 class BFLog(object):
 	def __init__(self , logger = None):
 		# 创建一个logger

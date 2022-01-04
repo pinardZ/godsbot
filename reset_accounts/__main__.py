@@ -1,4 +1,4 @@
-import dao
+from main import dao
 import logging
 
 

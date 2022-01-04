@@ -8,7 +8,7 @@ PyAutoGUI version = 0.9.53
 
 ## How to start
 
-python3 -m godsbot
+python3 -m main
     
 ## Architecture
 
