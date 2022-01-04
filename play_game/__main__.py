@@ -77,8 +77,8 @@ def check_game_until(active: bool):
 
     while True:
         time.sleep(5)
-        ret = shell.run_cmd('ps -ef | grep /gods.app/Contents/MacOS/gods | grep -v grep')
-        if (active and ret != '') or (not active and ret == ''):
+        running = shell.check_gods_running()
+        if (active and running) or (not active and not running):
             break
 
 
@@ -86,7 +86,7 @@ async def run_gods_bot(ctx: runtime.Context):
     """Run gods bot"""
 
     logging.info('Runs gods_bot shell.')
-    ret = shell.run_cmd("python3 -m gods_bot")
+    ret = shell.run_gods_bot()
     logging.info('Completed gods_bot shell.Status is %s', ret)
 
 
@@ -94,7 +94,7 @@ def stop_gods_bot(ctx: runtime.Context):
     """Stop gods bot"""
 
     logging.info('Stop gods_bot shell.')
-    # shell.run_cmd("ps - ef | python3 -m gods_bot | grep - v grep | awk '{print $2}' | xargs kill - 9")
+    shell.stop_gods_bot()
     logging.info('Killed gods_bot shell.')
 
 

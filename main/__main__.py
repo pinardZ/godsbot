@@ -1,9 +1,7 @@
 import os
+import shutil
 import time
 import logging
-
-import shutil
-import win32api
 
 from .logger import BFLog
 from . import instance
@@ -46,23 +44,18 @@ def read_account(ctx: runtime.Context):
         shutil.copy(temp_path, game_account_path)
 
 
-def win_startGame():
-	log.info("启动游戏")
-	win32api.ShellExecute(0, 'open', '.\\.\\Immutable.lnk', '', '', 1) 
-
-
 def reset_account(ctx: runtime.Context):
-	account_path = ctx.account_cfg_dir
+    account_path = ctx.account_cfg_dir
 
-	game_file_list = os.listdir(game_account_path)
-	game_file_path_list = [os.path.join(game_account_path, file) for file in game_file_list]
+    game_file_list = os.listdir(game_account_path)
+    game_file_path_list = [os.path.join(game_account_path, file) for file in game_file_list]
 
-	# 复制账号文件
-	log.info("重置账号 %d cookies" % ctx.index)
-	for filename in game_file_list:
-		if filename == "Cookies" or filename == "config.json":
-			file_path = os.path.join(game_account_path, filename)
-			shutil.copy(file_path, account_path)
+    # 复制账号文件
+    log.info("重置账号 %d cookies" % ctx.index)
+    for filename in game_file_list:
+        if filename == "Cookies" or filename == "config.json":
+            file_path = os.path.join(game_account_path, filename)
+            shutil.copy(file_path, account_path)
 
 
 def login_vpn(ctx: runtime.Context):
@@ -84,15 +77,13 @@ def logout_vpn(ctx: runtime.Context):
 
 def open_app(ctx: runtime.Context):
     """Open Immutable App.TODO check program is alive."""
-    win_startGame()
-    # shell.run_cmd("open /Applications/Immutable.app")
+    shell.open_immutable()
 
 
 def close_app(ctx: runtime.Context):
     """Close Immutable App.TODO check program is stopped."""
 
-    shell.run_cmd("ps -ef | grep /Applications/Immutable.app/Contents/MacOS/Immutable "
-                  "| grep -v grep |awk '{print $2}' | xargs kill -9")
+    shell.close_immutable()
 
 
 def check_app_running():
@@ -100,16 +91,15 @@ def check_app_running():
 
     while True:
         time.sleep(5)
-        ret = shell.run_cmd('ps -ef | grep /Applications/Immutable.app/Contents/MacOS/Immutable | grep -v grep')
-        if ret != '':
-            break
+        if shell.check_immutable_running():
+            return
 
 
 def play_game(ctx: runtime.Context):
     """Run play_game shell.Args account to plat."""
 
     logging.info('Runs play_game shell.')
-    ret = shell.run_cmd("python3 -m play_game %d" % ctx.account.id)
+    ret = shell.execute_play_game(ctx.account.id)
     logging.info('Completed play_game shell.Status is %s', ret)
     ctx.account.status = int(ret)
 
