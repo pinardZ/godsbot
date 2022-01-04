@@ -1,9 +1,11 @@
 import logging
-
-from . import runtime
-from . import shell
 import sys
 import time
+
+from . import instance
+from . import runtime
+from . import shell
+
 
 logging.basicConfig(level=logging.INFO, format='main %(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
 
@@ -15,14 +17,14 @@ def main():
     ctx = runtime.Context(1)
     while True:
         # replace_account(ctx)
-        # login_vpn(ctx)
+        login_vpn(ctx)
         open_app(ctx)
         check_app_running()
         time.sleep(5)
         play_game(ctx)
         time.sleep(5)
-        # close_app(ctx)
-        # logout_vpn(ctx)
+        close_app(ctx)
+        logout_vpn(ctx)
         sys.exit(0)
 
 
@@ -37,14 +39,19 @@ def replace_account(ctx: runtime.Context):
 
 def login_vpn(ctx: runtime.Context):
     """Login vpn program.Args account to acquire same ip if program support."""
-    ret = shell.run_cmd("python3 -m change_ip %d" % ctx.index)
-    pass
+
+    idx = ctx.index
+    compute_cli = instance.get_compute_client()
+    ip = instance.get_instance_ip(instance.start_instance(compute_cli, idx))
+    # TODO ip 填到 vpn
 
 
 def logout_vpn(ctx: runtime.Context):
     """Logout vpn program."""
 
-    pass
+    idx = ctx.index
+    compute_cli = instance.get_compute_client()
+    instance.stop_instance(compute_cli, idx)
 
 
 def open_app(ctx: runtime.Context):
