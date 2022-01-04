@@ -1,0 +1,28 @@
+[2022-01-04 22:45:38,852] __main__.py->main line:14 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 22:45:57,039] __main__.py->main line:15 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 22:46:16,464] __main__.py->main line:15 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 22:46:25,752] __main__.py->main line:15 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:03:29,203] __main__.py->main line:15 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:05:41,479] __main__.py->main line:15 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:07:01,699] __main__.py->main line:15 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:07:18,394] __main__.py->main line:15 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:07:18,537] __main__.py->read_account line:33 [INFO]复制账号 cookies 至游戏目录
+[2022-01-04 23:07:32,800] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:07:32,945] __main__.py->read_account line:34 [INFO]复制账号 cookies 至游戏目录
+[2022-01-04 23:11:44,922] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:12:17,081] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:12:38,082] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:13:16,465] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:13:47,762] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:13:47,766] __main__.py->read_account line:34 [INFO]复制账号 cookies 至游戏目录
+[2022-01-04 23:14:44,096] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:14:44,099] __main__.py->read_account line:34 [INFO]复制账号 cookies 至游戏目录
+[2022-01-04 23:15:30,872] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:15:30,875] __main__.py->read_account line:35 [INFO]复制账号 cookies 至游戏目录
+[2022-01-04 23:15:31,018] __main__.py->reset_account line:47 [INFO]重置账号 cookies
+[2022-01-04 23:16:04,866] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:16:04,869] __main__.py->read_account line:35 [INFO]复制账号 1 cookies 至游戏目录
+[2022-01-04 23:16:05,011] __main__.py->reset_account line:47 [INFO]重置账号 cookies
+[2022-01-04 23:17:19,914] __main__.py->main line:16 [INFO]Program Started. Press Ctrl-C to abort at any time.
+[2022-01-04 23:17:19,917] __main__.py->read_account line:35 [INFO]复制账号 1 cookies 至游戏目录
+[2022-01-04 23:17:20,058] __main__.py->reset_account line:47 [INFO]重置账号 cookies

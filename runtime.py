@@ -1,5 +1,7 @@
 import dao
+import sys
 
+account_cfg_dir = '.\\static\\login_files'
 
 class Context(object):
     """Runtime context."""
@@ -14,8 +16,10 @@ class Context(object):
     def setIndex(self, id: int):
         self.index = id
         self.accounts_cnt = dao.count_accounts()
+        if id > self.accounts_cnt:
+            sys.exit(0)
         self.account = dao.get_account(id)
-        self.account_cfg_dir = './login_files/%d' % id
+        self.account_cfg_dir = '%s\\%d' % (account_cfg_dir, id)
 
     def setStatus(self, status: int):
         self.account.status = status

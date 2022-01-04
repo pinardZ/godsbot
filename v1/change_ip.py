@@ -11,7 +11,7 @@ from google.cloud.compute_v1.types.compute import ListInstancesRequest
 
 def main():
     compute_client = compute_v1.InstancesClient.from_service_account_json('still-catalyst-336215-26dbf969c522.json')
-    instances_listPager = compute_client.list(project="still-catalyst-336215", zone="us-west1-a")
+    instances_listPager = compute_client.list(project="still-catalyst-336215", zone="us-west1-b")
     pages = list(instances_listPager.pages)
     instances = []
     for page in pages:

@@ -1,8 +1,8 @@
 import sqlite3
 
-from objc._objc import function
+# from objc._objc import function
 
-DB_NAME = 'godsbot'
+DB_NAME = 'godsbot.sqlite'
 TABLE_NAME = 'accounts'
 
 
@@ -21,7 +21,7 @@ class Account(object):
         self.status = status
 
 
-def db_operation(op: function, commit=False):
+def db_operation(op, commit=False):
     """DB operation common function."""
 
     conn = sqlite3.connect(DB_NAME)

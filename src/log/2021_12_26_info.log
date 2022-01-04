@@ -1,0 +1,13 @@
+[2021-12-26 20:10:42,474] change_account.py->getIndex line:25 [WARNING]index 格式不正确，重置为 0，index: 0
+[2021-12-26 20:13:06,664] change_account.py->getIndex line:25 [WARNING]index 格式不正确，重置为 0，index: 0
+[2021-12-26 20:13:24,336] change_account.py->getIndex line:25 [WARNING]index 格式不正确，重置为 0，index: 
+[2021-12-26 20:13:55,261] change_account.py->getIndex line:25 [WARNING]index 格式不正确，重置为 0，index: 0
+[2021-12-26 20:14:33,649] change_account.py->getIndex line:26 [WARNING]index 格式不正确，重置为 0，index: 0
+[2021-12-26 20:15:06,299] change_account.py->getIndex line:26 [WARNING]index 格式不正确，重置为 0，index: 0
+[2021-12-26 20:29:55,279] change_account.py->resetLoginFiles line:66 [INFO]重置账号 cookie
+[2021-12-26 20:33:40,485] change_account.py->resetLoginFiles line:74 [INFO]重置账号 cookie
+[2021-12-26 20:34:40,376] change_account.py->resetLoginFiles line:74 [INFO]重置账号 cookie
+[2021-12-26 20:34:52,206] change_account.py->resetLoginFiles line:74 [INFO]重置账号 cookie
+[2021-12-26 20:35:04,977] change_account.py->resetLoginFiles line:74 [INFO]重置账号 cookie
+[2021-12-26 20:35:16,703] change_account.py->resetLoginFiles line:74 [INFO]重置账号 cookie
+[2021-12-26 20:36:50,545] change_account.py->copyLoginFilesToGame line:55 [INFO]复制账号 cookie 至游戏目录
