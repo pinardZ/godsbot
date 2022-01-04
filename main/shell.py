@@ -4,7 +4,7 @@ import subprocess
 # env
 env_mac = 'mac'
 env_win = 'win'
-env = env_mac
+env = env_win
 
 # common
 python_cmd = 'python3'
@@ -15,7 +15,7 @@ gods_bot_exe = 'gods_bot.exe'
 immutable_app_path = '/Applications/Immutable.app'
 gods_game_path = '/gods.app/Contents/MacOS/gods'
 # win
-immutable_lnk_path = '.\\.\\Immutable.lnk'
+immutable_lnk_path = 'Immutable.lnk'
 immutable_exe = 'immutable.exe'
 gods_exe = 'gods.exe'
 
@@ -62,8 +62,11 @@ def stop_gods_bot():
 
 
 def open_app(app):
-    run_cmd("open %s" % app)
-
+    if env == env_mac:
+        run_cmd("open %s" % app)
+    elif env == env_win:
+        run_cmd("%s" % app)
+    
 
 def check_process_running_mac(process):
     ret = run_cmd('ps -ef | grep %s | grep -v grep' % process)

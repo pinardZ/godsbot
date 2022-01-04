@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 import time
 import logging
 
@@ -19,17 +20,18 @@ def main():
     log.info('Program Started. Press Ctrl-C to abort at any time.')
     ctx = runtime.Context(1)
     while True:
-        read_account(ctx)
-        login_vpn(ctx)
+        # read_account(ctx)
+        # login_vpn(ctx)
         open_app(ctx)
-        check_app_running()
-        time.sleep(5)
-        play_game(ctx)
-        time.sleep(5)
-        close_app(ctx)
-        logout_vpn(ctx)
-        reset_account(ctx)
-        ctx = runtime.Context(ctx.index + 1)
+        # check_app_running()
+        # time.sleep(5)
+        # play_game(ctx)
+        # time.sleep(5)
+        # close_app(ctx)
+        # logout_vpn(ctx)
+        # reset_account(ctx)
+        # ctx = runtime.Context(ctx.index + 1)
+        sys.exit(0)
 
 
 def read_account(ctx: runtime.Context):
