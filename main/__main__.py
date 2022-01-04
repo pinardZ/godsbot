@@ -3,13 +3,15 @@ import sys
 import time
 import logging
 import shutil
-from v1.logger import BFLog
+import win32api
+from .logger import BFLog
 from . import runtime
 from . import shell
 
 log = BFLog().getLogger()
 
 game_account_path = "C:\\Users\\wwly\\AppData\\Roaming\\immutable-launcher\\"
+
 
 def main():
     """Run the main program. The VPN.program and Immutable.app must be installed."""
@@ -29,6 +31,7 @@ def main():
         # logout_vpn(ctx)
         ctx = runtime.Context(ctx.index + 1)
 
+
 def read_account(ctx: runtime.Context):
     account_path = ctx.account_cfg_dir
     # print(account_path)
@@ -39,6 +42,12 @@ def read_account(ctx: runtime.Context):
     for file in account_file_list:
         temp_path = os.path.join(account_path, file)
         shutil.copy(temp_path, game_account_path)
+
+
+def win_startGame():
+	log.info("启动游戏")
+	win32api.ShellExecute(0, 'open', '.\\.\\Immutable.lnk', '', '', 1) 
+
 
 def reset_account(ctx: runtime.Context):
 	account_path = ctx.account_cfg_dir
@@ -68,8 +77,8 @@ def logout_vpn(ctx: runtime.Context):
 
 def open_app(ctx: runtime.Context):
     """Open Immutable App.TODO check program is alive."""
-
-    shell.run_cmd("open /Applications/Immutable.app")
+    win_startGame()
+    # shell.run_cmd("open /Applications/Immutable.app")
 
 
 def close_app(ctx: runtime.Context):
