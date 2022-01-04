@@ -1,4 +1,8 @@
-import dao
+from . import dao
+
+
+def get_account_cfg_dir(id: int) ->str:
+    return '/static/login_files/%d' % id
 
 
 class Context(object):
@@ -8,14 +12,14 @@ class Context(object):
         self.index = 0
         self.accounts_cnt = 0
         self.account = None
-        self.account_cfg_dir = ''
+        self.account_cfg_dir = get_account_cfg_dir(id)
         self.setIndex(id)
 
     def setIndex(self, id: int):
         self.index = id
         self.accounts_cnt = dao.count_accounts()
         self.account = dao.get_account(id)
-        self.account_cfg_dir = './login_files/%d' % id
+        self.account_cfg_dir = get_account_cfg_dir(id)
 
     def setStatus(self, status: int):
         self.account.status = status

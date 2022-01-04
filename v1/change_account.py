@@ -1,6 +1,6 @@
 import os
 import shutil
-from v1.logger import BFLog
+from main.logger import BFLog
 
 login_files_path = ".\\login_files"
 index_path = ".\\current_index.py"
@@ -22,7 +22,7 @@ def getIndex():
 	index_content = fo.read()
 	index = to_int(index_content)
 	if index != 0 and index == False:
-		log.warning("index 格式不正确，重置为 0，index: " + index_content)
+		log.warning("index 格式不正确，重置为 2，index: " + index_content)
 		index = 0
 	fo.close()
 	return index
@@ -44,7 +44,7 @@ def copyLoginFilesToGame():
 	index = getIndex()
 
 	if index >= len(account_path_list):
-		log.warning("index 越界，重置为 0，index: " + index_content)
+		log.warning("index 越界，重置为 2，index: " + index_content)
 		index = 0
 
 	# 取出当前账号的信息

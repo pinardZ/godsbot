@@ -1,9 +1,11 @@
 import logging
 
-import runtime
-import shell
+from . import runtime
+from . import shell
+import sys
+import time
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
+logging.basicConfig(level=logging.INFO, format='main %(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
 
 
 def main():
@@ -13,11 +15,15 @@ def main():
     ctx = runtime.Context(1)
     while True:
         # replace_account(ctx)
-        login_vpn(ctx)
-        # open_game(ctx)
-        # play_game(ctx)
-        # close_game(ctx)
+        # login_vpn(ctx)
+        open_app(ctx)
+        check_app_running()
+        time.sleep(5)
+        play_game(ctx)
+        time.sleep(5)
+        # close_app(ctx)
         # logout_vpn(ctx)
+        sys.exit(0)
 
 
 def replace_account(ctx: runtime.Context):
@@ -41,17 +47,27 @@ def logout_vpn(ctx: runtime.Context):
     pass
 
 
-def open_game(ctx: runtime.Context):
+def open_app(ctx: runtime.Context):
     """Open Immutable App.TODO check program is alive."""
 
     shell.run_cmd("open /Applications/Immutable.app")
 
 
-def close_game(ctx: runtime.Context):
+def close_app(ctx: runtime.Context):
     """Close Immutable App.TODO check program is stopped."""
 
     shell.run_cmd("ps -ef | grep /Applications/Immutable.app/Contents/MacOS/Immutable "
                   "| grep -v grep |awk '{print $2}' | xargs kill -9")
+
+
+def check_app_running():
+    """Check Immutable App active use loop"""
+
+    while True:
+        time.sleep(5)
+        ret = shell.run_cmd('ps -ef | grep /Applications/Immutable.app/Contents/MacOS/Immutable | grep -v grep')
+        if ret != '':
+            break
 
 
 def play_game(ctx: runtime.Context):

@@ -1,12 +1,11 @@
 import logging
 import pyautogui
-import runtime
-import shell
+from main import runtime, shell
 import sys
 import time
 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
+logging.basicConfig(level=logging.INFO, format='play_game %(asctime)s.%(msecs)03d: %(message)s', datefmt='%H:%M:%S')
 
 
 def main():
@@ -17,17 +16,23 @@ def main():
     account_id = int(arg)
     ctx = runtime.Context(account_id)
     if ctx.account.status > 0:
-        print(ctx.account.status)
+        logging.info("account %d status is %d" % (ctx.account.id, ctx.account.status))
+        print(0)
         return
+    time.sleep(5)
     while True:
         if not click_play_btn(ctx):
+            logging.info("play btn is not clickable")
             print(0)
             return
         wait_game_beg(ctx)
+        time.sleep(5)
         run_gods_bot(ctx)
         wait_game_end(ctx)
+        time.sleep(5)
         stop_gods_bot(ctx)
         if remote_check_status(ctx):
+            logging.info("account %d status is %d" % (ctx.account.id, ctx.account.status))
             print(1)
             return
 
@@ -58,22 +63,22 @@ def click_play_btn(ctx: runtime.Context) -> bool:
 def wait_game_beg(ctx: runtime.Context):
     """Waiting until gods program begin"""
 
-    check_game_running(True)
+    check_game_until(True)
 
 
 def wait_game_end(ctx: runtime.Context):
     """Waiting until gods program end"""
 
-    check_game_running(False)
+    check_game_until(False)
 
 
-def check_game_running(alive: bool):
-    """Check gods program alive use loop"""
+def check_game_until(active: bool):
+    """Check gods program active use loop"""
 
     while True:
         time.sleep(5)
-        ret = shell.run_cmd('ps -ef | grep "GAME PROGRAM" | grep -v grep')
-        if (alive and ret == '') or (not alive and ret != ''):
+        ret = shell.run_cmd('ps -ef | grep /gods.app/Contents/MacOS/gods | grep -v grep')
+        if (active and ret != '') or (not active and ret == ''):
             break
 
 
@@ -89,14 +94,14 @@ def stop_gods_bot(ctx: runtime.Context):
     """Stop gods bot"""
 
     logging.info('Stop gods_bot shell.')
-    shell.run_cmd("ps - ef | python3 -m gods_bot | grep - v grep | awk '{print $2}' | xargs kill - 9")
+    # shell.run_cmd("ps - ef | python3 -m gods_bot | grep - v grep | awk '{print $2}' | xargs kill - 9")
     logging.info('Killed gods_bot shell.')
 
 
 def remote_check_status(ctx: runtime.Context) -> bool:
     """Check account status by remote api"""
 
-    return False
+    return True
 
 
 if __name__ == '__main__':
