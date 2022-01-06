@@ -1,5 +1,6 @@
 import psutil
 import subprocess
+import win32api
 
 # env
 env_mac = 'mac'
@@ -8,7 +9,7 @@ env = env_win
 
 # common
 python_cmd = 'python3'
-play_game_module = 'play_name'
+play_game_module = 'play_game'
 gods_bot_module = 'gods_bot'
 gods_bot_exe = 'gods_bot.exe'
 # mac
@@ -16,7 +17,7 @@ immutable_app_path = '/Applications/Immutable.app'
 gods_game_path = '/gods.app/Contents/MacOS/gods'
 # win
 immutable_lnk_path = 'Immutable.lnk'
-immutable_exe = 'immutable.exe'
+immutable_exe = 'Immutable.exe'
 gods_exe = 'gods.exe'
 
 
@@ -54,7 +55,6 @@ def execute_play_game(account_id):
 
 def run_gods_bot():
     open_app(gods_bot_exe)
-    # return execute_python_module(gods_bot_module, [])
 
 
 def stop_gods_bot():
@@ -65,7 +65,9 @@ def open_app(app):
     if env == env_mac:
         run_cmd("open %s" % app)
     elif env == env_win:
-        run_cmd("%s" % app)
+        print('open_app' + app)
+        win32api.ShellExecute(0, 'open', app, '', '', 1) 
+        # run_cmd("%s" % app)
     
 
 def check_process_running_mac(process):
@@ -80,6 +82,7 @@ def kill_process_mac(process):
 def check_process_running_win(process):
     pl = psutil.pids()
     for pid in pl:
+        # print(psutil.Process(pid).name())
         if psutil.Process(pid).name() == process:
             return True
     return False
@@ -93,7 +96,7 @@ def kill_process_win(process):
 
 
 def execute_python_module(module, args):
-    cmd = '%s -m %s' % (python_cmd, module)
+    cmd = '%s -m %s' % ('python', module)
     for arg in args:
         cmd += ' ' + str(arg)
     return run_cmd(cmd)

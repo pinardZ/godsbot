@@ -22,11 +22,12 @@ def main():
     while True:
         # read_account(ctx)
         # login_vpn(ctx)
-        open_app(ctx)
+        # open_app(ctx)
+        print('open app complete')
         # check_app_running()
         # time.sleep(5)
-        # play_game(ctx)
-        # time.sleep(5)
+        play_game(ctx)
+        time.sleep(5)
         # close_app(ctx)
         # logout_vpn(ctx)
         # reset_account(ctx)
@@ -93,7 +94,9 @@ def check_app_running():
 
     while True:
         time.sleep(5)
-        if shell.check_immutable_running():
+        isRunning = shell.check_immutable_running()
+        print('check_app_running, isRunning %d' % isRunning)
+        if isRunning:
             return
 
 
@@ -103,7 +106,7 @@ def play_game(ctx: runtime.Context):
     logging.info('Runs play_game shell.')
     ret = shell.execute_play_game(ctx.account.id)
     logging.info('Completed play_game shell.Status is %s', ret)
-    ctx.account.status = int(ret)
+    # ctx.account.status = int(ret)
 
 
 if __name__ == '__main__':

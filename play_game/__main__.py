@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import pyautogui
 from main import runtime, shell
@@ -27,7 +28,7 @@ def main():
             return
         wait_game_beg(ctx)
         time.sleep(5)
-        run_gods_bot(ctx)
+        asyncio.run(run_gods_bot(ctx))
         wait_game_end(ctx)
         time.sleep(5)
         stop_gods_bot(ctx)
@@ -56,7 +57,7 @@ def click_play_btn(ctx: runtime.Context) -> bool:
     print(currentMouseX, currentMouseY)
 
     pyautogui.click(play_btn_x, play_btn_y)
-    pyautogui.click(play_btn_x, play_btn_y)
+    # pyautogui.click(play_btn_x, play_btn_y)
     return True
 
 
@@ -78,6 +79,7 @@ def check_game_until(active: bool):
     while True:
         time.sleep(5)
         running = shell.check_gods_running()
+        print('check_game_until running %d' % running)
         if (active and running) or (not active and not running):
             break
 
@@ -86,7 +88,13 @@ async def run_gods_bot(ctx: runtime.Context):
     """Run gods bot"""
 
     logging.info('Runs gods_bot shell.')
+    print('Runs gods_bot shell.')
+    asyncio.create_task(async_run_gods_bot())
+    
+
+async def async_run_gods_bot():
     ret = shell.run_gods_bot()
+    print('Completed gods_bot shell.Status is %s' % ret)
     logging.info('Completed gods_bot shell.Status is %s', ret)
 
 
@@ -94,8 +102,10 @@ def stop_gods_bot(ctx: runtime.Context):
     """Stop gods bot"""
 
     logging.info('Stop gods_bot shell.')
+    print('Stop gods_bot shell')
     shell.stop_gods_bot()
     logging.info('Killed gods_bot shell.')
+    print('Killed gods_bot shell')
 
 
 def remote_check_status(ctx: runtime.Context) -> bool:

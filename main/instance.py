@@ -1,9 +1,9 @@
 import time
 from google.cloud import compute_v1
 
-compute_account_json = 'still-catalyst-336215-26dbf969c522.json'
-compute_project = 'still-catalyst-336215'
-compute_zone = 'us-west4-b'
+compute_account_json = 'lucid-sol-337316-3533a4eede37.json'
+compute_project = 'lucid-sol-337316'
+compute_zone = 'asia-east1-a'
 
 # STAGING
 # RUNNING
@@ -22,7 +22,7 @@ def get_instance(compute_client, idx):
     pages = list(instances_list_pager.pages)
     instances = []
     for page in pages:
-        instances.append(*page.items)
+        instances.extend(page.items)
     return instances[idx]
 
 
@@ -49,3 +49,7 @@ def stop_instance(compute_client, idx):
         if instance.status == "TERMINATED":
             return instance
 
+
+if __name__ == "__main__":
+    client = get_compute_client()
+    get_instance(client, 0)
